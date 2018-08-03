@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearLayout1_alert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageview"
+            android:src="@drawable/hamburger"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:id="@+id/title"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <TextView
+        android:textSize="18sp"
+        android:layout_below="@+id/linearLayout1_alert"
+        android:id="@+id/message"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/negetiveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message"
+        android:layout_toLeftOf="@+id/positiveButton"
+        android:textSize="18sp"/>
+    <Button
+        android:layout_below="@+id/message"
+        android:layout_alignParentRight="true"
+        android:textSize="18sp"
+        android:id="@+id/positiveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

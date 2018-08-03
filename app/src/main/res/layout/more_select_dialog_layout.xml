@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
+
+    <TextView
+        android:layout_toRightOf="@+id/imageview"
+        android:id="@+id/title"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@+id/title"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+    <Button
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:id="@+id/confirm_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/confirm_button"
+        android:layout_alignBottom="@+id/confirm_button"
+        android:layout_toLeftOf="@+id/confirm_button"
+        android:layout_toStartOf="@+id/confirm_button"/>
+
+</RelativeLayout>

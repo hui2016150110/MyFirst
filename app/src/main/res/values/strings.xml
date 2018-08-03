@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">知识点杂合</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_button">增加</string>
+    <string name="sub_button">减少</string>
+    <string name="re_button">重置</string>
+    <string name="show_button">显示进度条的对话框</string>
+</resources>
