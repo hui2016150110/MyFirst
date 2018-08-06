@@ -33,8 +33,8 @@ public class GestureActivity extends AppCompatActivity {
                 return true;
             }
         });
-        //利用handle机制在非ui线程中更新ui。
-        mHandler.post(myRunnable);
+
+        //mHandler.post(myRunnable);
     }
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener{
@@ -42,10 +42,12 @@ public class GestureActivity extends AppCompatActivity {
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             //从右向左滑动
             if(e1.getX()-e2.getX()>50){
+                //利用handle机制在非ui线程中更新ui。
                 mHandler.post(myRunnable);
             }
             //从左向右滑动
             else if(e2.getX()-e1.getX()>50){
+                //利用handle机制在非ui线程中更新ui。
                 mHandler.post(myRunnable2);
             }
             else{

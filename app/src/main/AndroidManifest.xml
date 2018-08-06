@@ -48,6 +48,8 @@
 
         <activity android:name=".GestureActivity">
         </activity>
+        <activity android:name=".ViewPagerActivty">
+        </activity>
     </application>
 
 </manifest>

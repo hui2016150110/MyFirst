@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         create_broadcast.setOnClickListener(this);
         Button create_gesture = (Button)findViewById(R.id.create_gesture);
         create_gesture.setOnClickListener(this);
+        Button create_viewPager = (Button) findViewById(R.id.create_viewPager);
+        create_viewPager.setOnClickListener(this);
     }
 
     @Override
@@ -78,6 +80,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(MainActivity.this,GestureActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.create_viewPager:
+                intent = new Intent(MainActivity.this,ViewPagerActivty.class);
+                startActivity(intent);
                 default:
         }
     }
