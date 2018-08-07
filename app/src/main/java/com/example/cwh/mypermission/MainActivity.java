@@ -3,6 +3,8 @@ package com.example.cwh.mypermission;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -34,6 +36,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         create_gesture.setOnClickListener(this);
         Button create_viewPager = (Button) findViewById(R.id.create_viewPager);
         create_viewPager.setOnClickListener(this);
+        Button create_provider = (Button) findViewById(R.id.create_provider);
+        create_provider.setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(1,100,1,"setting");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -83,6 +98,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.create_viewPager:
                 intent = new Intent(MainActivity.this,ViewPagerActivty.class);
                 startActivity(intent);
+                break;
+            case R.id.create_provider:
+                intent = new Intent(MainActivity.this,ProviderActivity.class);
+                startActivity(intent);
+                break;
                 default:
         }
     }

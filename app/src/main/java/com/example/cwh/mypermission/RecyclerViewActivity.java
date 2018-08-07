@@ -39,7 +39,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, GridLayoutManager.HORIZONTAL));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, GridLayoutManager.VERTICAL));
         MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(getData());
         recyclerView.setAdapter(myRecyclerViewAdapter);
