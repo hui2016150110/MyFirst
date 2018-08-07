@@ -3,6 +3,7 @@ package com.example.cwh.mypermission;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class ProviderActivity extends AppCompatActivity {
 
+    private Uri mUri;
     private List<ContactsPerson> mContactsPersonList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private ContactsPerson_recycleciew_adapter mContactsPerson_recycleciew_adapter;
@@ -58,7 +60,6 @@ public class ProviderActivity extends AppCompatActivity {
 
         //注册上下文菜单
         //重写onCreateContextMenu方法
-
         registerForContextMenu(mRecyclerView);
 
     }
@@ -115,8 +116,16 @@ public class ProviderActivity extends AppCompatActivity {
             case 2:
                 Toast.makeText(this,item.getTitle(),Toast.LENGTH_SHORT).show();
                 break;
+            case 3:
+                mContactsPerson_recycleciew_adapter.moveTotop(mContactsPerson_recycleciew_adapter.getPosition());
+                break;
+            case 4:
+                mContactsPerson_recycleciew_adapter.add();
+                break;
             default:
         }
         return super.onContextItemSelected(item);
     }
+
+
 }

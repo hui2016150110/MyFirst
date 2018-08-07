@@ -5,9 +5,16 @@ package com.example.cwh.mypermission;
  */
 
 public class ContactsPerson {
+    private boolean isTop = false;
     private String name;
     private String number;
 
+
+    public ContactsPerson(){};
+    public ContactsPerson(String name,String number){
+        this.name = name;
+        this.number = number;
+    }
     public String getName() {
         return name;
     }
@@ -22,5 +29,13 @@ public class ContactsPerson {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public void setTop(boolean isTop){
+        this.isTop = isTop;
+    }
+
+    public boolean getTop(){
+        return isTop;
     }
 }
