@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cwh.mypermission.AnimationActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+
+        android:id="@+id/button_alpha"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
+        android:text="alpha"
+        app:layout_constraintBottom_toTopOf="@+id/imageView8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="161dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94"
+        app:srcCompat="@drawable/hamburger"/>
+
+    <Button
+        android:id="@+id/button_rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="rotate"
+        app:layout_constraintStart_toEndOf="@+id/button_alpha"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/button_translate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="translate"
+        app:layout_constraintStart_toEndOf="@+id/button_rotate"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/button_scale"
+        android:layout_width="77dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="2dp"
+        android:text="scale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_translate"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/group_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_alpha"/>
+
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="continue"
+        app:layout_constraintStart_toEndOf="@+id/group_anim"
+        app:layout_constraintTop_toBottomOf="@+id/button_rotate"/>
+
+    <Button
+        android:id="@+id/button_property"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="属性动画"
+        app:layout_constraintStart_toEndOf="@+id/continue_button"
+        app:layout_constraintTop_toBottomOf="@+id/button_translate"/>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0"
+        app:layout_constraintTop_toBottomOf="@id/group_anim"
+        app:srcCompat="@drawable/round1"
+        />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        tools:layout_editor_absoluteX="0"
+        app:layout_constraintTop_toBottomOf="@id/group_anim"
+        app:srcCompat="@drawable/round2"
+        />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0"
+        app:layout_constraintTop_toBottomOf="@id/group_anim"
+        app:srcCompat="@drawable/round3"
+        />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/round4"
+        app:layout_constraintTop_toBottomOf="@id/group_anim"
+        tools:layout_editor_absoluteX="0"/>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/group_anim"
+        tools:layout_editor_absoluteX="0"
+        app:srcCompat="@drawable/round5"
+        />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/group_anim"
+        tools:layout_editor_absoluteX="0"
+        app:srcCompat="@drawable/round6"/>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/round7"
+        tools:layout_editor_absoluteX="0"
+        app:layout_constraintTop_toBottomOf="@id/group_anim"/>
+
+    <Button
+        android:id="@+id/button_xuanfu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="悬浮窗"
+        app:layout_constraintStart_toEndOf="@+id/button_property"
+        app:layout_constraintTop_toBottomOf="@+id/button_scale"/>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -141,6 +141,20 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_below="@+id/linearLayout6"
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="create animation"
+                android:id="@+id/create_animation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 </ScrollView>

@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         create_viewPager.setOnClickListener(this);
         Button create_provider = (Button) findViewById(R.id.create_provider);
         create_provider.setOnClickListener(this);
+        Button create_animation = (Button) findViewById(R.id.create_animation);
+        create_animation.setOnClickListener(this);
     }
 
     @Override
@@ -101,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.create_provider:
                 intent = new Intent(MainActivity.this,ProviderActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.create_animation:
+                intent = new Intent(MainActivity.this,AnimationActivity.class);
                 startActivity(intent);
                 break;
                 default:
