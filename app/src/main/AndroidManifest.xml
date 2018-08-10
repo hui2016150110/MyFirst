@@ -57,6 +57,8 @@
         </activity>
         <activity android:name=".AnimationActivity">
         </activity>
+        <activity android:name=".OkhttpActivity">
+        </activity>
     </application>
 
 </manifest>

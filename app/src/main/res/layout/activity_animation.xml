@@ -94,9 +94,9 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0"
         app:layout_constraintTop_toBottomOf="@id/group_anim"
         app:srcCompat="@drawable/round1"
+        tools:layout_editor_absoluteX="0"
         />
 
     <ImageView
@@ -104,26 +104,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="220dp"
-        tools:layout_editor_absoluteX="0"
         app:layout_constraintTop_toBottomOf="@id/group_anim"
         app:srcCompat="@drawable/round2"
+        tools:layout_editor_absoluteX="0"
         />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0"
         app:layout_constraintTop_toBottomOf="@id/group_anim"
         app:srcCompat="@drawable/round3"
+        tools:layout_editor_absoluteX="0"
         />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/round4"
         app:layout_constraintTop_toBottomOf="@id/group_anim"
+        app:srcCompat="@drawable/round4"
         tools:layout_editor_absoluteX="0"/>
 
     <ImageView
@@ -131,8 +131,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/group_anim"
-        tools:layout_editor_absoluteX="0"
         app:srcCompat="@drawable/round5"
+        tools:layout_editor_absoluteX="0"
         />
 
     <ImageView
@@ -140,16 +140,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/group_anim"
-        tools:layout_editor_absoluteX="0"
-        app:srcCompat="@drawable/round6"/>
+        app:srcCompat="@drawable/round6"
+        tools:layout_editor_absoluteX="0"/>
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/group_anim"
         app:srcCompat="@drawable/round7"
-        tools:layout_editor_absoluteX="0"
-        app:layout_constraintTop_toBottomOf="@id/group_anim"/>
+        tools:layout_editor_absoluteX="0"/>
 
     <Button
         android:id="@+id/button_xuanfu"
@@ -158,6 +158,23 @@
         android:text="悬浮窗"
         app:layout_constraintStart_toEndOf="@+id/button_property"
         app:layout_constraintTop_toBottomOf="@+id/button_scale"/>
+
+    <Button
+        android:id="@+id/margin_animator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="margin animator"
+        app:layout_constraintTop_toBottomOf="@id/imageView7"
+        tools:layout_editor_absoluteX="0"/>
+
+    <Button
+        android:id="@+id/scale_animator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scale animator"
+        app:layout_constraintTop_toBottomOf="@id/imageView7"
+        app:layout_constraintLeft_toRightOf="@+id/margin_animator"
+        />
 
 
 </android.support.constraint.ConstraintLayout>

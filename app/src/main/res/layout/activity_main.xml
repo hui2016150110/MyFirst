@@ -148,10 +148,18 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:layout_weight="1"
                 android:text="create animation"
                 android:id="@+id/create_animation"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/test_okhttp"
+                android:text="test okhttp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 

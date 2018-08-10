@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         create_provider.setOnClickListener(this);
         Button create_animation = (Button) findViewById(R.id.create_animation);
         create_animation.setOnClickListener(this);
+        Button test_okhttp = (Button) findViewById(R.id.test_okhttp);
+        test_okhttp.setOnClickListener(this);
     }
 
     @Override
@@ -109,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(MainActivity.this,AnimationActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.test_okhttp:
+                intent = new Intent(MainActivity.this,OkhttpActivity.class);
+                startActivity(intent);
                 default:
         }
     }
