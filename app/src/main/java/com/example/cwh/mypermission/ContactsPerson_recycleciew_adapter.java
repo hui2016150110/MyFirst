@@ -96,7 +96,6 @@ public class ContactsPerson_recycleciew_adapter extends RecyclerView.Adapter<Con
         values.put(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
         values.put(ContactsContract.CommonDataKinds.Phone.NUMBER,phone);
         contentResolver.insert(ContactsContract.Data.CONTENT_URI,values);
-
     }
 
     public void cancelTop(int position){
@@ -108,6 +107,8 @@ public class ContactsPerson_recycleciew_adapter extends RecyclerView.Adapter<Con
         mContactsPersonList.add(TOPCONTACTS,person);
         notifyDataSetChanged();
     }
+
+
 
     //为每一个itemview添加一个OnCreateContextMenuListener（）事件
         class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{

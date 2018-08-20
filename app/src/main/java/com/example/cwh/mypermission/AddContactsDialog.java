@@ -24,7 +24,6 @@ public class AddContactsDialog extends Dialog implements View.OnClickListener{
         super(context);
 
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

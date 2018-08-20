@@ -3,6 +3,7 @@ package com.example.cwh.mypermission;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.TimeInterpolator;
+import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
@@ -26,8 +27,13 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
     private ImageView mImageView;
     private int []imagesCount = {R.id.imageView1,R.id.imageView2,R.id.imageView3,
             R.id.imageView4,R.id.imageView5,R.id.imageView6,R.id.imageView7};
+
+    private int []imagesCount2 = {R.id.imageView8,R.id.imageView9,R.id.imageView10,
+            R.id.imageView11,R.id.imageView12,R.id.imageView13,R.id.imageView14};
     private List<ImageView> mImageViewList = new ArrayList<>();
+    private List<ImageView> mImageViewList2 = new ArrayList<>();
     private boolean flag = true;
+    private boolean flag2 = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,13 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
             ImageView imageView1 = (ImageView) findViewById(imagesCount[i]);
             mImageViewList.add(imageView1);
         }
+        ImageView imageView2 = (ImageView) findViewById(R.id.imageView14);
+        imageView2.setOnClickListener(this);
+        for(int i = 0;i<imagesCount2.length;i++){
+            ImageView imageView1 = (ImageView) findViewById(imagesCount2[i]);
+            mImageViewList2.add(imageView1);
+        }
+
         Button margin_animator = (Button) findViewById(R.id.margin_animator);
         margin_animator.setOnClickListener(this);
         Button scale_animator = (Button)findViewById(R.id.scale_animator);
@@ -101,12 +114,10 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
                     public void onAnimationStart(Animation animation) {
 
                     }
-
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         mImageView.startAnimation(scaleAnimation1);
                     }
-
                     @Override
                     public void onAnimationRepeat(Animation animation) {
 
@@ -146,6 +157,12 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
                 }else {
                     closeAnim();
                 }
+                break;
+            case R.id.imageView14:
+                if(flag2)
+                    myAnimator();
+                else
+                    closemyAnimator();
                 break;
             case R.id.margin_animator:
                 marginValueAnimator();
@@ -228,7 +245,6 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
                 float animatorValueScaleY = (float) animation.getAnimatedValue("scaleY");
                 mImageView.setScaleX(animatorValueScaleX);
                 mImageView.setScaleY(animatorValueScaleY);
-
             }
         });
         //4.为ValueAnimator设置自定义的Interpolator
@@ -245,6 +261,66 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
         @Override
         public float getInterpolation(float input) {
             return input*0.64f;
+        }
+    }
+
+    public void myAnimator(){
+        flag2 = false;
+        int i;
+        for(i = 0;i<6;i++){
+            final ImageView myImageView = mImageViewList2.get(i);
+            ValueAnimator animator=ValueAnimator.ofObject(new TypeEvaluator<Point>(){
+                @Override
+                public Point evaluate(float fraction, Point startValue, Point endValue) {
+                    double radius = (endValue.radius-startValue.radius)*fraction+startValue.radius;
+                    double angle = (endValue.angle-startValue.angle)*fraction+startValue.angle;
+                    Point point = new Point(radius,angle);
+                    return point;
+                }
+            }, new Point(0,0),new Point(240,60*(5-i)));
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    Point point= (Point) animation.getAnimatedValue();
+                    float animatorValueTranslationX = (float) ( Math.sin(Math.toRadians(point.getAngle()))*point.getRadius());
+                    float animatorValueTranslationY = (float) ( Math.cos(Math.toRadians(point.getAngle()))*point.getRadius());
+                    myImageView.setTranslationX(animatorValueTranslationX);
+                    myImageView.setTranslationY(animatorValueTranslationY);
+                }
+            });
+            animator.setDuration(500);
+            animator.setTarget(myImageView);
+            animator.start();
+        }
+    }
+
+    public void closemyAnimator(){
+        flag2 = true;
+        int i;
+        for(i = 0;i<6;i++){
+            final ImageView myImageView = mImageViewList2.get(i);
+            ValueAnimator animator=ValueAnimator.ofObject(new TypeEvaluator<Point>(){
+                @Override
+                public Point evaluate(float fraction, Point startValue, Point endValue) {
+                    double radius = (endValue.radius-startValue.radius)*fraction+startValue.radius;
+                    double angle = (endValue.angle-startValue.angle)*fraction+startValue.angle;
+                    Point point = new Point(radius,angle);
+                    return point;
+                }
+            }, new Point(240,60*(5-i)),new Point(0,0));
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    Point point= (Point) animation.getAnimatedValue();
+                    float animatorValueTranslationX = (float) ( Math.sin(Math.toRadians(point.getAngle()))*point.getRadius());
+                    float animatorValueTranslationY = (float) ( Math.cos(Math.toRadians(point.getAngle()))*point.getRadius());
+                    myImageView.setTranslationX(animatorValueTranslationX);
+                    myImageView.setTranslationY(animatorValueTranslationY);
+                }
+            });
+            animator.setDuration(500);
+            animator.setTarget(myImageView);
+            animator.start();
         }
     }
 }

@@ -61,7 +61,6 @@ public class GestureActivity extends AppCompatActivity {
             Looper.loop();
          }
      }
-
      */
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener{
@@ -140,7 +139,6 @@ public class GestureActivity extends AppCompatActivity {
             Looper.loop();
         }
     }
-
 
     public void imageUpdate(){
         runOnUiThread(new Runnable() {
