@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/contacts_textView"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:text="联系人姓名"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/name_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="请输入联系人姓名"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contacts_textView"/>
+
+    <TextView
+        android:id="@+id/phone_textView"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:text="联系人电话"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/name_editText"
+        app:layout_constraintTop_toBottomOf="@+id/name_editText"/>
+
+    <EditText
+        android:id="@+id/phone_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="请输入联系人电话"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_textView"/>
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:text="取消"
+        app:layout_constraintEnd_toStartOf="@+id/confirm_button"
+        app:layout_constraintTop_toBottomOf="@+id/phone_editText"
+        />
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确认"
+        app:layout_constraintEnd_toEndOf="@+id/phone_editText"
+        app:layout_constraintTop_toBottomOf="@+id/phone_editText"
+        />
+
+</android.support.constraint.ConstraintLayout>

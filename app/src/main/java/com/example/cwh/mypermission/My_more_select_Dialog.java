@@ -84,7 +84,6 @@ public class My_more_select_Dialog extends Dialog {
     public void setConfirm_button(String text, DialogInterface.OnClickListener listener){
         mConfirmListener = listener;
         confirm_button.setText(text);
-
     }
 
     public void setCancel_button(String text, OnClickListener listener){

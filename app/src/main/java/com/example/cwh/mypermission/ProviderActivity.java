@@ -1,6 +1,10 @@
 package com.example.cwh.mypermission;
 
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -45,9 +49,10 @@ public class ProviderActivity extends AppCompatActivity {
 
         //判断用户有没有给我们授权
         //没有授权就要申请授权，已经授权就直接读取联系人
-        if(ContextCompat.checkSelfPermission(ProviderActivity.this, Manifest.permission.READ_CONTACTS)!= PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(ProviderActivity.this, Manifest.permission.READ_CONTACTS)!= PackageManager.PERMISSION_GRANTED
+                ||ContextCompat.checkSelfPermission(ProviderActivity.this, Manifest.permission.WRITE_CONTACTS)!= PackageManager.PERMISSION_GRANTED){
             //用户没有授权，需要申请授权，无论是同意还是拒绝，最后都会调用onRequestPermissionsResult()方法
-            ActivityCompat.requestPermissions(ProviderActivity.this,new String[]{Manifest.permission.READ_CONTACTS},1);
+            ActivityCompat.requestPermissions(ProviderActivity.this,new String[]{Manifest.permission.READ_CONTACTS,Manifest.permission.WRITE_CONTACTS},1);
         }else {
             readContacts();
         }
@@ -61,9 +66,7 @@ public class ProviderActivity extends AppCompatActivity {
         //注册上下文菜单
         //重写onCreateContextMenu方法
         registerForContextMenu(mRecyclerView);
-
     }
-
     //读取联系人信息
     private void readContacts(){
         Cursor cursor = null;
@@ -104,28 +107,48 @@ public class ProviderActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        final ContentResolver contentResolver= getContentResolver();
+        final ContentValues values = new ContentValues();
+        final Uri rawContentUri = getContentResolver().insert(ContactsContract.RawContacts.CONTENT_URI,values);
+        final long rawContactId = ContentUris.parseId(rawContentUri);
         switch (item.getItemId()){
             case 1:
-                mContactsPerson_recycleciew_adapter.removeItem(mContactsPerson_recycleciew_adapter.getPosition());
+                mContactsPerson_recycleciew_adapter.removeItem(mContactsPerson_recycleciew_adapter.getPosition(),contentResolver,rawContactId);
                 break;
             case 2:
                 Toast.makeText(this,item.getTitle(),Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                mContactsPerson_recycleciew_adapter.moveTotop(mContactsPerson_recycleciew_adapter.getPosition());
+                if(item.getGroupId()==2)
+                    mContactsPerson_recycleciew_adapter.moveTotop(mContactsPerson_recycleciew_adapter.getPosition());
+                else
+                    mContactsPerson_recycleciew_adapter.cancelTop(mContactsPerson_recycleciew_adapter.getPosition());
                 break;
             case 4:
-                mContactsPerson_recycleciew_adapter.add();
+                final AddContactsDialog addContactsDialog = new AddContactsDialog(ProviderActivity.this);
+                addContactsDialog.show();
+
+                addContactsDialog.setCancel_button(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addContactsDialog.dismiss();
+                    }
+                });
+                addContactsDialog.setConfirm_button(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addContactsDialog.dismiss();
+                        mContactsPerson_recycleciew_adapter.add(rawContentUri,values,rawContactId,contentResolver,addContactsDialog.getName(),addContactsDialog.getPhone());
+                    }
+                });
+
                 break;
             default:
         }
         return super.onContextItemSelected(item);
     }
-
-
 }
