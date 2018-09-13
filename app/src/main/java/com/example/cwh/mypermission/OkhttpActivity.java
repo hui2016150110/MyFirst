@@ -7,18 +7,27 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import okhttp3.Call;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 
 public class OkhttpActivity extends AppCompatActivity implements View.OnClickListener,UpdateCallback{
 
     private TextView textView;
+    //1.拿到okhttpclient对象
+    //2.够造request
+    // 3.将request封装为call
+    //4.执行call
+    OkHttpClient okHttpClient = new OkHttpClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_okhttp);
         Button get_button = (Button) findViewById(R.id.get_button);
+        Button post_button = (Button) findViewById(R.id.post_button);
         get_button.setOnClickListener(this);
+        post_button.setOnClickListener(this);
         textView = (TextView) findViewById(R.id.textView);
 
     }
@@ -27,28 +36,17 @@ public class OkhttpActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.get_button:
-                //1.拿到okhttpclient对象
-                OkHttpClient okHttpClient = new OkHttpClient();
-                //2.够造request
-                final Request request = new Request.Builder().get().url("http://www.imooc.com/").build();
-                //3.将request封装为call
+                Request request = new Request.Builder().url("http://www.imooc.com/").build();
                 Call call = okHttpClient.newCall(request);
-                //同步执行
-                //4.执行call
-//                try {
-//                    call.execute();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-                //不是ui线程
-                //异步执行
                 call.enqueue(new MyCallback(this));
+                break;
+            case R.id.post_button:
+                RequestBody requestBody = new FormBody.Builder().add("username","admin").build();
+                Request mrequest = new Request.Builder().url("http://baidu.com").post(requestBody).build();
                 break;
             default:
         }
     }
-
-
     @Override
     public void update(final String data) {
         runOnUiThread(new Runnable() {

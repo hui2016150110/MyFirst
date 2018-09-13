@@ -60,6 +60,8 @@
         </activity>
         <activity android:name=".OkhttpActivity">
         </activity>
+        <activity android:name="view.UserLoginAcivity">
+        </activity>
     </application>
 
 </manifest>

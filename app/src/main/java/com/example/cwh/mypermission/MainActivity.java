@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import view.UserLoginAcivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         create_animation.setOnClickListener(this);
         Button test_okhttp = (Button) findViewById(R.id.test_okhttp);
         test_okhttp.setOnClickListener(this);
+        Button create_MVP = (Button) findViewById(R.id.create_MVP);
+        create_MVP.setOnClickListener(this);
     }
 
     @Override
@@ -114,6 +118,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.test_okhttp:
                 intent = new Intent(MainActivity.this,OkhttpActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.create_MVP:
+                intent = new Intent(MainActivity.this, UserLoginAcivity.class);
+                startActivity(intent);
+                break;
                 default:
         }
     }

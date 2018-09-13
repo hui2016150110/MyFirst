@@ -277,7 +277,7 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
                     Point point = new Point(radius,angle);
                     return point;
                 }
-            }, new Point(0,0),new Point(240,60*(5-i)));
+            }, new Point(0,60*i),new Point(240,60*i+360));
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -307,7 +307,7 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
                     Point point = new Point(radius,angle);
                     return point;
                 }
-            }, new Point(240,60*(5-i)),new Point(0,0));
+            }, new Point(240,60*i+360),new Point(0,60*i));
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
