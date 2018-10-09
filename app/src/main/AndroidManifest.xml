@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/learning"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -61,6 +61,8 @@
         <activity android:name=".OkhttpActivity">
         </activity>
         <activity android:name="view.UserLoginAcivity">
+        </activity>
+        <activity android:name=".TestTab">
         </activity>
     </application>
 

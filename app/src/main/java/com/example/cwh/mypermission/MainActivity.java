@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         test_okhttp.setOnClickListener(this);
         Button create_MVP = (Button) findViewById(R.id.create_MVP);
         create_MVP.setOnClickListener(this);
+        Button create_Tab = (Button)findViewById(R.id.create_Tab);
+        create_Tab.setOnClickListener(this);
     }
 
     @Override
@@ -121,6 +123,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.create_MVP:
                 intent = new Intent(MainActivity.this, UserLoginAcivity.class);
+                startActivity(intent);
+                break;
+            case R.id.create_Tab:
+                intent = new Intent(MainActivity.this,TestTab.class);
                 startActivity(intent);
                 break;
                 default:

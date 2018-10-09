@@ -1,9 +1,9 @@
 package com.example.cwh.mypermission;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -49,6 +49,13 @@ public class ViewPagerActivty extends AppCompatActivity implements View.OnClickL
         imageButton2.setOnClickListener(this);
         imageButton3.setOnClickListener(this);
         imageButton4.setOnClickListener(this);
+        //禁止viewpager的左右滑动,但是view一旦增多就会出现卡顿
+//       mViewPager.setOnTouchListener(new View.OnTouchListener() {
+//           @Override
+//           public boolean onTouch(View v, MotionEvent event) {
+//               return true;
+//           }
+//       });
     }
 
     @Override
