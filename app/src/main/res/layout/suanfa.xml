@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="8"
+        android:rowCount="8"
+        android:columnCount="4"
+        >
+        <ImageView
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+        <ImageView
+
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_margin="2px"
+            />
+    </GridLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/next_button_al"
+        android:text="下一步"
+        android:layout_height="0px"/>
+</LinearLayout>

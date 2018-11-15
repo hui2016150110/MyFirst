@@ -25,6 +25,7 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
     public int init_arr[][] = new int [][]{{3,3,4,3},{3,2,3,3}, {2,4,3,4}, {1,3,4,3}, {3,3,1,1}, {3,4,3,3},{1,4,4,3},{1,2,3,2}};
     public int init_arr2[][] = new int [8][4];
     private HashSet<String> check = new HashSet<String>();
+    boolean flag =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,27 +74,32 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
 
         //long start = System.currentTimeMillis();
 
+
         new Thread(){
             @Override
             public void run(){
                 find_all_can_swap(init_arr,0,1,new ArrayList<Point2>());
                 while(!stack.empty()){
                     Info_of_step info_of_step = stack.pop();
-//                    find_all_can_swap(info_of_step.arr,info_of_step.score,info_of_step.step+1,info_of_step.route);
-//                    if(max_score<info_of_step.score){
-//                        max_score = info_of_step.score;
-//                        info_of_step2 = info_of_step;
-//
-//                    }
-                    System.out.print(info_of_step);
-//                    if(max_score==4)
-//                        break;
+                    find_all_can_swap(info_of_step.arr,info_of_step.score,info_of_step.step+1,info_of_step.route);
+                    if(max_score<info_of_step.score){
+                        max_score = info_of_step.score;
+                        info_of_step2 = info_of_step;
+                    }
+                    //System.out.print(info_of_step);
                 }
                 System.out.println("max_score "+max_score);
                 System.out.println(info_of_step2);
+                flag = true;
             }
         }.start();
 
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+ //       System.out.print(info_of_step2);
         //long end = System.currentTimeMillis();
 //        try {
 //            Thread.sleep(3000);
@@ -146,7 +152,7 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
                 string = string+info_of_step.arr[p][q];
             }
         }
-        if(check.contains(string)||info_of_step.step>=5){
+        if(check.contains(string)){
             return;
         }else{
             check.add(string);
@@ -330,37 +336,37 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
                 init_arr2[p][q] = arr[p][q];
             }
         }
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                for(int i = 0;i<row;i++){
-                    for(int j = 0;j<col;j++){
-                        ImageView image =(ImageView) gridLayout.getChildAt((i*col+j));
-                        if(init_arr2[i][j]==1)
-                            image.setImageResource(R.color.black);
-                        else if(init_arr2[i][j]==2)
-                            image.setImageResource(R.color.blue);
-                        else if(init_arr2[i][j]==3)
-                            image.setImageResource(R.color.yellow);
-                        else if(init_arr2[i][j]==4)
-                            image.setImageResource(R.color.red);
-                        else
-                            image.setImageResource(R.color.gray);
-                    }
-                }
-                info_of_step.store_point.clear();
-            }
-        });
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for(int i = 0;i<row;i++){
+//                    for(int j = 0;j<col;j++){
+//                        ImageView image =(ImageView) gridLayout.getChildAt((i*col+j));
+//                        if(init_arr2[i][j]==1)
+//                            image.setImageResource(R.color.black);
+//                        else if(init_arr2[i][j]==2)
+//                            image.setImageResource(R.color.blue);
+//                        else if(init_arr2[i][j]==3)
+//                            image.setImageResource(R.color.yellow);
+//                        else if(init_arr2[i][j]==4)
+//                            image.setImageResource(R.color.red);
+//                        else
+//                            image.setImageResource(R.color.gray);
+//                    }
+//                }
+//                info_of_step.store_point.clear();
+//            }
+//        });
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        System.out.println("下落后的棋盘：");
@@ -424,8 +430,11 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
 
-        ImageView imageView = (ImageView) gridLayout.getChildAt(0);
-        imageView.setImageResource(R.color.gray);
+        if(flag){
+            ImageView imageView = (ImageView) gridLayout.getChildAt(0);
+            imageView.setImageResource(R.color.gray);
+        }
+
 
 //        Log.d("output","message");
     }

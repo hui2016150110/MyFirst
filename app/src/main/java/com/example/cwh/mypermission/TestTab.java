@@ -35,7 +35,6 @@ public class TestTab extends AppCompatActivity implements View.OnClickListener{
         imageButton4.setOnClickListener(this);
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){

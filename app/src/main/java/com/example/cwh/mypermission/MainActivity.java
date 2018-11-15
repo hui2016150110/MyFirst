@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         create_MVP.setOnClickListener(this);
         Button create_Tab = (Button)findViewById(R.id.create_Tab);
         create_Tab.setOnClickListener(this);
+        Button create_Algorithm3 = (Button) findViewById(R.id.create_Algorithm3);
+        create_Algorithm3.setOnClickListener(this);
     }
 
     @Override
@@ -127,6 +129,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.create_Tab:
                 intent = new Intent(MainActivity.this,TestTab.class);
+                startActivity(intent);
+                break;
+            case R.id.create_Algorithm3:
+                intent = new Intent(MainActivity.this,Algorithm3.class);
                 startActivity(intent);
                 break;
                 default:

@@ -64,6 +64,8 @@
         </activity>
         <activity android:name=".TestTab">
         </activity>
+        <activity android:name=".Algorithm3">
+        </activity>
     </application>
 
 </manifest>
