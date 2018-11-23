@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         create_Tab.setOnClickListener(this);
         Button create_Algorithm3 = (Button) findViewById(R.id.create_Algorithm3);
         create_Algorithm3.setOnClickListener(this);
+        Button create_Rxjava = (Button) findViewById(R.id.create_RXjava);
+        create_Rxjava.setOnClickListener(this);
     }
 
     @Override
@@ -133,6 +135,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.create_Algorithm3:
                 intent = new Intent(MainActivity.this,Algorithm3.class);
+                startActivity(intent);
+                break;
+            case R.id.create_RXjava:
+                intent = new Intent(MainActivity.this,RXjava_activity.class);
                 startActivity(intent);
                 break;
                 default:

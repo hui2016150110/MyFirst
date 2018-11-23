@@ -15,6 +15,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <Button
+        android:id="@+id/post_button"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="Post"
+        app:layout_constraintStart_toEndOf="@+id/get_button"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/post_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="post_file"
+        app:layout_constraintStart_toEndOf="@+id/post_button"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -36,12 +53,12 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/post_button"
+        android:id="@+id/download"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:text="Post"
-        app:layout_constraintStart_toEndOf="@+id/get_button"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:text="download"
+        app:layout_constraintBaseline_toBaselineOf="@+id/post_file"
+        app:layout_constraintStart_toEndOf="@+id/post_file"
         />
 
 

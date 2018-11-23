@@ -3,6 +3,7 @@ package com.example.cwh.mypermission;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -23,7 +24,7 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
     Info_of_step info_of_step2 = null;
     GridLayout gridLayout;
     public int init_arr[][] = new int [][]{{3,3,4,3},{3,2,3,3}, {2,4,3,4}, {1,3,4,3}, {3,3,1,1}, {3,4,3,3},{1,4,4,3},{1,2,3,2}};
-    public int init_arr2[][] = new int [8][4];
+    public int init_arr2[][] = new int[][] {{3,3,4,3},{3,2,3,3}, {2,4,3,4}, {1,3,4,3}, {3,3,1,1}, {3,4,3,3},{1,4,4,3},{1,2,3,2}};
     private HashSet<String> check = new HashSet<String>();
     boolean flag =false;
     @Override
@@ -79,20 +80,21 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
             @Override
             public void run(){
                 find_all_can_swap(init_arr,0,1,new ArrayList<Point2>());
-                while(!stack.empty()){
-                    Info_of_step info_of_step = stack.pop();
-                    find_all_can_swap(info_of_step.arr,info_of_step.score,info_of_step.step+1,info_of_step.route);
-                    if(max_score<info_of_step.score){
-                        max_score = info_of_step.score;
-                        info_of_step2 = info_of_step;
-                    }
-                    //System.out.print(info_of_step);
-                }
+//                while(!stack.empty()){
+//                    Info_of_step info_of_step = stack.pop();
+//                    find_all_can_swap(info_of_step.arr,info_of_step.score,info_of_step.step+1,info_of_step.route);
+//                    if(max_score<info_of_step.score){
+//                        max_score = info_of_step.score;
+//                        info_of_step2 = info_of_step;
+//                    }
+//                    //System.out.print(info_of_step);
+//                }
                 System.out.println("max_score "+max_score);
                 System.out.println(info_of_step2);
                 flag = true;
             }
         }.start();
+
 
 //        try {
 //            Thread.sleep(3000);
@@ -298,9 +300,48 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
 
     public void eliminate_point(final Info_of_step info_of_step)  {
         HashSet<Point2> points = info_of_step.store_point;
+        final Point2[] point2s = info_of_step.getPoints();
+
         int [][]arr = info_of_step.arr;
         if(points.isEmpty()){
             return;
+        }
+        boolean is_change = true;
+        final int before_swap_arr[][] = new int [row][col];
+        for(int p = 0;p<row;p++){
+            for(int q = 0;q<col;q++){
+                before_swap_arr[p][q] = arr[p][q];
+                if(arr[p][q]==0)
+                    is_change = false;
+            }
+        }
+
+        before_swap_arr[point2s[0].row][point2s[0].col] = arr[point2s[1].row][point2s[1].col];;
+        before_swap_arr[point2s[1].row][point2s[1].col] = arr[point2s[0].row][point2s[0].col];
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0;i<row;i++){
+                    for(int j = 0;j<col;j++){
+                        ImageView image =(ImageView) gridLayout.getChildAt((i*col+j));
+                        if(before_swap_arr[i][j]==1)
+                            image.setImageResource(R.color.black);
+                        else if(before_swap_arr[i][j]==2)
+                            image.setImageResource(R.color.blue);
+                        else if(before_swap_arr[i][j]==3)
+                            image.setImageResource(R.color.yellow);
+                        else if(before_swap_arr[i][j]==4)
+                            image.setImageResource(R.color.red);
+                        else if(before_swap_arr[i][j]==0)
+                            image.setImageResource(R.color.gray);
+                    }
+                }
+            }
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         Iterator iterator = points.iterator();
         //System.out.println("需要消掉的点坐标：");
@@ -328,47 +369,87 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
                     }
                     arr[0][q] = 0;
                 }
-
             }
         }
         for(int p = 0;p<row;p++){
             for(int q = 0;q<col;q++){
                 init_arr2[p][q] = arr[p][q];
+                //System.out.print(init_arr2[p][q]+" ");
+            }
+            //System.out.println();
+        }
+        final boolean finalIs_change = is_change;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(finalIs_change){
+                    ImageView changeView1 = (ImageView) gridLayout.getChildAt(point2s[0].row*col+point2s[0].col);
+                    ImageView changeView2 = (ImageView) gridLayout.getChildAt(point2s[1].row*col+point2s[1].col);
+                    int x1 = point2s[0].row;
+                    int x2 = point2s[1].row;
+                    int y1 = point2s[0].col;
+                    int y2 = point2s[1].col;
+                    //changeView1向右移动
+                    if(x1==x2){
+                        TranslateAnimation translateAnimation1 = new TranslateAnimation(0,(y2-y1)*changeView2.getWidth(),0,0);
+                        translateAnimation1.setDuration(1000);
+                        TranslateAnimation translateAnimation2 = new TranslateAnimation(0,(y1-y2)*changeView1.getWidth(),0,0);
+                        translateAnimation2.setDuration(1000);
+                        changeView1.startAnimation(translateAnimation1);
+                        changeView2.startAnimation(translateAnimation2);
+                    }
+                    else{
+                        TranslateAnimation translateAnimation1 = new TranslateAnimation(0,0,0,(x2-x1)*changeView2.getHeight());
+                        translateAnimation1.setDuration(1000);
+                        TranslateAnimation translateAnimation2 = new TranslateAnimation(0,0,0,(x1-x2)*changeView2.getHeight());
+                        translateAnimation2.setDuration(1000);
+                        changeView1.startAnimation(translateAnimation1);
+                        changeView2.startAnimation(translateAnimation2);
+                    }
+                }
+
+            }
+        });
+        if(is_change){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                for(int i = 0;i<row;i++){
-//                    for(int j = 0;j<col;j++){
-//                        ImageView image =(ImageView) gridLayout.getChildAt((i*col+j));
-//                        if(init_arr2[i][j]==1)
-//                            image.setImageResource(R.color.black);
-//                        else if(init_arr2[i][j]==2)
-//                            image.setImageResource(R.color.blue);
-//                        else if(init_arr2[i][j]==3)
-//                            image.setImageResource(R.color.yellow);
-//                        else if(init_arr2[i][j]==4)
-//                            image.setImageResource(R.color.red);
-//                        else
-//                            image.setImageResource(R.color.gray);
-//                    }
-//                }
-//                info_of_step.store_point.clear();
-//            }
-//        });
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
 
 
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                    for(int i = 0;i<row;i++){
+                        for(int j = 0;j<col;j++){
+                            ImageView image =(ImageView) gridLayout.getChildAt((i*col+j));
+                            if(init_arr2[i][j]==1)
+                                image.setImageResource(R.color.black);
+                            else if(init_arr2[i][j]==2)
+                                image.setImageResource(R.color.blue);
+                            else if(init_arr2[i][j]==3)
+                                image.setImageResource(R.color.yellow);
+                            else if(init_arr2[i][j]==4)
+                                image.setImageResource(R.color.red);
+                            else if(init_arr2[i][j]==0)
+                                image.setImageResource(R.color.gray);
+                        }
+                }
+
+//                ScaleAnimation scaleAnimation = new ScaleAnimation(0.5f,1.0f,0.5f,1.0f,1,0.5f,1,0.5f);
+//                scaleAnimation.setDuration(500);
+//                changeView1.startAnimation(scaleAnimation);
+//                changeView2.startAnimation(scaleAnimation);
+                info_of_step.store_point.clear();
+            }
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 //        System.out.println("下落后的棋盘：");
 //        for(int p = 0;p<row;p++){
 //            for(int q = 0;q<col;q++){
@@ -429,13 +510,10 @@ public class Algorithm3 extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-
-        if(flag){
-            ImageView imageView = (ImageView) gridLayout.getChildAt(0);
-            imageView.setImageResource(R.color.gray);
-        }
-
-
+//        if(flag){
+//            ImageView imageView = (ImageView) gridLayout.getChildAt(0);
+//            imageView.setImageResource(R.color.gray);
+//        }
 //        Log.d("output","message");
     }
     public void change(int i,int j,int p,int q){
