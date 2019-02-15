@@ -206,7 +206,20 @@
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
+            <LinearLayout
+                android:layout_below="@+id/linearLayout9"
+                android:id="@+id/linearLayout10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <Button
+                    android:layout_weight="1"
+                    android:text="Test_retrofit"
+                    android:id="@+id/retrofit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
     </RelativeLayout>
 
