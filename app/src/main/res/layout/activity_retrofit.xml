@@ -5,13 +5,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cwh.mypermission.RetrofitActivity">
+    tools:context="com.example.cwh.mypermission.RetrofitActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <Button
         android:id="@+id/request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
         android:text="请求"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="7dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/src"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <Button
+        android:id="@+id/fanyi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="翻译"
+        app:layout_constraintBottom_toTopOf="@+id/tgt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/src"
+        />
+
+    <EditText
+        android:id="@+id/src"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+
+        android:gravity="center_vertical"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/fanyi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/request"
+        />
+
+    <EditText
+        android:id="@+id/tgt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:layout_marginBottom="256dp"
+
+        android:gravity="center_vertical"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"/>
 </android.support.constraint.ConstraintLayout>

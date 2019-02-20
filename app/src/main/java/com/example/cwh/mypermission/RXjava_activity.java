@@ -11,13 +11,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+
+//import rx.Observable;
+//import rx.Observer;
+//import rx.Subscriber;
+//import rx.android.schedulers.AndroidSchedulers;
+//import rx.functions.Action1;
+//import rx.functions.Func1;
+//import rx.schedulers.Schedulers;
 
 public class RXjava_activity extends AppCompatActivity implements View.OnClickListener{
 
@@ -66,25 +76,31 @@ public class RXjava_activity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        Observable.create(new Observable.OnSubscribe<Drawable>() {
+
+        Observable.create(new ObservableOnSubscribe<Drawable>() {
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void call(Subscriber<? super Drawable> subscriber) {
+            public void subscribe(ObservableEmitter<Drawable> e) throws Exception {
                 Drawable drawable = getTheme().getDrawable(R.drawable.fruit);
-                subscriber.onNext(drawable);
-                subscriber.onCompleted();
+                e.onNext(drawable);
+                e.onComplete();
             }
         })
         .subscribeOn(Schedulers.io())//指定 subscribe() 发生在 IO 线程
         .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
         .subscribe(new Observer<Drawable>() {
             @Override
-            public void onCompleted() {
+            public void onComplete() {
 
             }
 
             @Override
             public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onSubscribe(Disposable d) {
 
             }
 
@@ -95,18 +111,22 @@ public class RXjava_activity extends AppCompatActivity implements View.OnClickLi
         });
 
         Observable.just("")
-        .map(new Func1<String, Bitmap>() {
+        .map(new Function<String, Bitmap>() {
             @Override
-            public Bitmap call(String s) {
+            public Bitmap apply(String s) throws Exception {
                 return getBitmapFromPath(s);
             }
+
         })
-        .subscribe(new Action1<Bitmap>() {
+        .subscribe(new Consumer<Bitmap>() {
             @Override
-            public void call(Bitmap bitmap) {
+            public void accept(Bitmap bitmap) throws Exception {
                 showBitmap(bitmap);
             }
         });
+
+
+
 
     }
 
