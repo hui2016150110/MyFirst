@@ -8,18 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
@@ -85,20 +79,46 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void youdaofanyi(){
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(TIMEOUT, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(TIMEOUT, TimeUnit.SECONDS)//设置读取超时时间
-                .writeTimeout(TIMEOUT, TimeUnit.SECONDS)//设置写入超时时间
-                .build();
-        String en = src.getText().toString();
-        System.out.println(en);
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(okHttpClient)
-                .baseUrl("http://fanyi.youdao.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-        PostRequest_Interface postRequest_interface = retrofit.create(PostRequest_Interface.class);
+        final String en = src.getText().toString();
+        Observer observer = new Observer<Translation1>(){
+
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Translation1 translation1) {
+                //处理返回的json数据
+                tgt.setText(translation1.getTranslateResult().get(0).get(0).getTgt());
+                Log.i("ims", translation1.getTranslateResult().get(0).get(0).getTgt());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("ims","eeee");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        HttpMethods.getInstance().fangyi(observer,en);
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .connectTimeout(TIMEOUT, TimeUnit.SECONDS)//设置连接超时时间
+//                .readTimeout(TIMEOUT, TimeUnit.SECONDS)//设置读取超时时间
+//                .writeTimeout(TIMEOUT, TimeUnit.SECONDS)//设置写入超时时间
+//                .build();
+//        String en = src.getText().toString();
+//        System.out.println(en);
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .client(okHttpClient)
+//                .baseUrl("http://fanyi.youdao.com/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                .build();
+//        PostRequest_Interface postRequest_interface = retrofit.create(PostRequest_Interface.class);
 /*
         Call<Translation1> call = postRequest_interface.getCall(en);
 
@@ -125,31 +145,31 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
 
 
 
-        postRequest_interface.getCall(en)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Translation1>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Translation1 translation1) {
-                        tgt.setText(translation1.getTranslateResult().get(0).get(0).getTgt());
-                        Log.i("ims","sssss");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("ims","eeeee");
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+//        postRequest_interface.getCall(en)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<Translation1>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(Translation1 translation1) {
+//                        tgt.setText(translation1.getTranslateResult().get(0).get(0).getTgt());
+//                        Log.i("ims","sssss");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.i("ims","eeeee");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
 
 
 

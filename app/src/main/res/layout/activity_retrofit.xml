@@ -12,50 +12,42 @@
         android:id="@+id/request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:text="请求"
-        app:layout_constraintBottom_toTopOf="@+id/src"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <Button
         android:id="@+id/fanyi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:text="翻译"
-        app:layout_constraintBottom_toTopOf="@+id/tgt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/src"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/src"/>
 
     <EditText
+        android:padding="0dp"
         android:id="@+id/src"
-        android:layout_width="match_parent"
+        android:layout_width="384dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-
+        android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:textSize="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/fanyi"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/request"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/request"/>
 
     <EditText
+        android:padding="0dp"
         android:id="@+id/tgt"
-        android:layout_width="match_parent"
+        android:layout_width="384dp"
         android:layout_height="50dp"
-
-        android:layout_marginBottom="256dp"
-
+        android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fanyi"/>
 </android.support.constraint.ConstraintLayout>

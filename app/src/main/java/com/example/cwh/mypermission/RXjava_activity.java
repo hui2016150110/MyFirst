@@ -71,6 +71,8 @@ public class RXjava_activity extends AppCompatActivity implements View.OnClickLi
         Observable<String> observable = Observable.just("1","2","3");
         Observable<String> observable = Observable.from(new String[]{"1","2"});
         observable.subscribe(observer);*/
+
+
        
     }
 

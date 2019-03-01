@@ -16,14 +16,17 @@ import java.util.Map;
  */
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
-    private List<Map<String,Object>> mMapList;
+    private List<Map<String,Object>> mMapList;//数据源
+    //这个ViewHolder含有recycleView每一个子项中所含有的控件，
     static class ViewHolder extends RecyclerView.ViewHolder{
         View mView;
         ImageView mImageView;
         TextView textView_name;
         TextView textView_price;
         TextView textView_desc;
+
         public ViewHolder(View view) {
+            //参数View是recyclerView中子项的最外层布局
             super(view);
             mView = view;
             mImageView = (ImageView) view.findViewById(R.id.imageview);
@@ -37,6 +40,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         mMapList = data;
     }
 
+    //这个方法是创建ViewHolder实例，我们一般将Recyclerview子项中的布局加载进来创建ViewHolder实例，
+    // 并把加载出来的布局传到构造函数中，最后将ViewHolder实例返回
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.myitem,parent,false);
@@ -70,6 +75,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return viewHolder;
     }
 
+    //对于RecyclerView的子项的数据进行赋值
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         Map<String,Object> map = mMapList.get(position);

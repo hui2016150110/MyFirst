@@ -14,5 +14,5 @@ public interface PostRequest_Interface {
     @POST("translate?doctype=json&jsonversion=&type=&keyfrom=&model=&mid=&imei=&vendor=&screen=&ssid=&network=&abtest=")
     @FormUrlEncoded
     Observable<Translation1> getCall(@Field("i") String targetSentence);
-
+    //targetSentence的值将作为
 }
