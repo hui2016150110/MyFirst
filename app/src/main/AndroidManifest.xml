@@ -75,6 +75,8 @@
         </activity>
         <activity android:name=".FileOperate">
         </activity>
+        <activity android:name=".DatabaseOperate">
+        </activity>
     </application>
 
 </manifest>

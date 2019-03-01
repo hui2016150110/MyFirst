@@ -40,4 +40,7 @@ dependencies {
     // Okhttp库
     compile 'com.squareup.okhttp3:okhttp:3.1.2'
 
+    //添加litepal依赖
+    compile 'org.litepal.android:core:2.0.0'
+
 }
