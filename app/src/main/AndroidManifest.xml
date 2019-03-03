@@ -80,6 +80,10 @@
         </activity>
         <activity android:name=".LitepalOperate">
         </activity>
+        <activity android:name=".NewsContentActivity">
+        </activity>
+        <activity android:name=".ShowNews">
+        </activity>
     </application>
 
 </manifest>

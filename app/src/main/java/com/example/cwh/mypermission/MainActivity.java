@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         create_Rxjava.setOnClickListener(this);
         Button test_retrofit = findViewById(R.id.retrofit);
         test_retrofit.setOnClickListener(this);
+        Button test_news = findViewById(R.id.news);
+        test_news.setOnClickListener(this);
     }
 
     @Override
@@ -145,6 +147,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.retrofit:
                 intent = new Intent(MainActivity.this,RetrofitActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.news:
+                intent = new Intent(MainActivity.this,ShowNews.class);
                 startActivity(intent);
                 break;
                 default:
