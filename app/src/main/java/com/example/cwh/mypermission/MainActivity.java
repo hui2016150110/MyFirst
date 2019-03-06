@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.toolbox.Volley;
+
 import view.UserLoginAcivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -58,6 +60,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         test_news.setOnClickListener(this);
         Button test_MyView = (Button) findViewById(R.id.myView);
         test_MyView.setOnClickListener(this);
+        Button test_Handler = (Button) findViewById(R.id.handler);
+        test_Handler.setOnClickListener(this);
+        Button test_Volley = (Button) findViewById(R.id.volley);
+        test_Volley.setOnClickListener(this);
     }
 
     @Override
@@ -157,6 +163,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.myView:
                 intent = new Intent(this,MyViewAcivity.class);
+                startActivity(intent);
+                break;
+            case R.id.handler:
+                intent = new Intent(this,HandlerActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.volley:
+                intent = new Intent(this,VolleyActivity.class);
                 startActivity(intent);
                 break;
                 default:
