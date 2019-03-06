@@ -24,6 +24,7 @@ import java.util.List;
 
 public class AnimationActivity extends AppCompatActivity implements View.OnClickListener{
 
+
     private ImageView mImageView;
     private int []imagesCount = {R.id.imageView1,R.id.imageView2,R.id.imageView3,
             R.id.imageView4,R.id.imageView5,R.id.imageView6,R.id.imageView7};
@@ -73,6 +74,7 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
         margin_animator.setOnClickListener(this);
         Button scale_animator = (Button)findViewById(R.id.scale_animator);
         scale_animator.setOnClickListener(this);
+
     }
     @Override
     public void onClick(View v) {

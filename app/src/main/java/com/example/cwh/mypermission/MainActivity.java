@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         test_retrofit.setOnClickListener(this);
         Button test_news = findViewById(R.id.news);
         test_news.setOnClickListener(this);
+        Button test_MyView = (Button) findViewById(R.id.myView);
+        test_MyView.setOnClickListener(this);
     }
 
     @Override
@@ -151,6 +153,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.news:
                 intent = new Intent(MainActivity.this,ShowNews.class);
+                startActivity(intent);
+                break;
+            case R.id.myView:
+                intent = new Intent(this,MyViewAcivity.class);
                 startActivity(intent);
                 break;
                 default:
