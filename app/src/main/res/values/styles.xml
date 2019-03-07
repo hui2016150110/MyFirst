@@ -44,4 +44,7 @@
 
     </style>
 
+    <declare-styleable name="RectView">
+        <attr name="default_size" format="dimension"/>
+    </declare-styleable>
 </resources>

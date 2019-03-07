@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cwh.mypermission.okhttp.OkHttpGet;
+import com.example.cwh.mypermission.okhttp.ResultCallback;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,6 +47,8 @@ public class OkhttpActivity extends AppCompatActivity implements View.OnClickLis
         Button post_button = (Button) findViewById(R.id.post_button);
         Button post_file = (Button) findViewById(R.id.post_file);
         Button download = (Button) findViewById(R.id.download);
+        Button getButton2 = (Button) findViewById(R.id.get_button2);
+        getButton2.setOnClickListener(this);
         download.setOnClickListener(this);
         post_file.setOnClickListener(this);
         get_button.setOnClickListener(this);
@@ -52,6 +57,8 @@ public class OkhttpActivity extends AppCompatActivity implements View.OnClickLis
         if(ContextCompat.checkSelfPermission(OkhttpActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(OkhttpActivity.this,new String []{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         }
+
+
     }
 
     @Override
@@ -118,6 +125,22 @@ public class OkhttpActivity extends AppCompatActivity implements View.OnClickLis
                         }
                     }
                 });
+                break;
+            case R.id.get_button2:
+                Log.i("TAG","click");
+                OkHttpGet.getInstance(this).getAsynHttp("https://www.baidu.com", new ResultCallback() {
+                    @Override
+                    public void onError(Request requset, Exception e) {
+                        Toast.makeText(OkhttpActivity.this,"error",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(String result) throws IOException {
+                        Toast.makeText(OkhttpActivity.this,"success",Toast.LENGTH_SHORT).show();
+                        Log.i("TAG",result);
+                    }
+                });
+                break;
             default:
         }
     }
