@@ -8,12 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.volley.toolbox.Volley;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import view.UserLoginAcivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private Button rigister;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         test_Handler.setOnClickListener(this);
         Button test_Volley = (Button) findViewById(R.id.volley);
         test_Volley.setOnClickListener(this);
+        rigister = (Button) findViewById(R.id.register);
+        rigister.setOnClickListener(this);
+        Button eventBus = (Button) findViewById(R.id.eventBus);
+        eventBus.setOnClickListener(this);
     }
 
     @Override
@@ -75,6 +82,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMoonEvent(MessageEvent messageEvent){
+        rigister.setText("收到消息");
     }
 
     @Override
@@ -171,6 +189,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.volley:
                 intent = new Intent(this,VolleyActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.register:
+                EventBus.getDefault().register(MainActivity.this);
+                break;
+            case R.id.eventBus:
+                intent = new Intent(this,EventBusActivity.class);
                 startActivity(intent);
                 break;
                 default:

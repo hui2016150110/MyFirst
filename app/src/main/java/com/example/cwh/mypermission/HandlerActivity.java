@@ -2,7 +2,7 @@ package com.example.cwh.mypermission;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -27,7 +27,23 @@ public class HandlerActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bt1:
-                newThread();
+//                newThread();
+                Log.i("ims","rrr");
+
+                MyThread myThread = new MyThread();
+                myThread.start();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Handler handler = myThread.getHandler();
+
+                if (handler != null) {
+                    handler.sendMessage(Message.obtain());
+                }else{
+                    Log.d("null","handler is null");
+                }
                 break;
 
         }
@@ -37,22 +53,8 @@ public class HandlerActivity extends AppCompatActivity implements View.OnClickLi
         new Thread(){
             @Override
             public void run() {
-                Log.i("ims","rrr");
-                Looper.prepare();
-                new MyThread().start();
 
-                Handler handler = new Handler(Looper.myLooper());
-//                Handler handler2 = new Handler(){
-//                    @Override
-//                    public void handleMessage(Message msg) {
-//                        Log.i("ims","shenm");
-//                    }
-//                };
-//                Message message = new Message();
-//                message.arg1 = 1;
-               handler.sendEmptyMessage(1);
 
-               Looper.loop();
             }
         }.start();
     }

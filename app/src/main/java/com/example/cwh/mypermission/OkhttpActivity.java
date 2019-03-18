@@ -3,6 +3,7 @@ package com.example.cwh.mypermission;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -74,7 +75,13 @@ public class OkhttpActivity extends AppCompatActivity implements View.OnClickLis
                 Request mrequest = new Request.Builder().url("http://baidu.com").post(requestBody).build();
                 break;
             case R.id.post_file:
-                File file = new File("E:\\a.txt");
+                String filepath = "";
+                if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+                    filepath = Environment.getDownloadCacheDirectory().getAbsolutePath();
+                }else {
+                    return;
+                }
+                File file = new File(filepath,"hui.text");
                 Request request1 = new Request.Builder()
                         .url("https://github.com/hui2016150110/Test_Git/tree/master/app/src/main/java/com/example/hui/test_git")
                         .post(RequestBody.create(MEDIA_TYPE_MARKDOWN,file))
@@ -153,5 +160,7 @@ public class OkhttpActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
+
+
 
 }

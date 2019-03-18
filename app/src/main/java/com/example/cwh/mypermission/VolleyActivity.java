@@ -54,7 +54,7 @@ public class VolleyActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://www.baidu.com", new Response.Listener<String>() {
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://www.baidu.com", new Response.Listener<String>() {
 //            @Override
 //            public void onResponse(String s) {
 //                Log.d("debug",s);
