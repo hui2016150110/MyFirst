@@ -90,6 +90,22 @@
         </activity>
         <activity android:name=".VolleyActivity">
         </activity>
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <service
+            android:name=".downloadTask.DownService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+        <activity android:name=".EventBusActivity">
+        </activity>
+        <activity android:name=".downloadTask.DownloadAcivity">
+        </activity>
     </application>
 
 </manifest>

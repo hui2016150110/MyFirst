@@ -260,6 +260,35 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
+            <Button
+                android:layout_weight="1"
+                android:text="Register"
+                android:id="@+id/register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/linearLayout12"
+            android:id="@+id/linearLayout13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_weight="1"
+                android:text="Test_eventBus"
+                android:id="@+id/eventBus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_weight="1"
+                android:text="Test_downLoad"
+                android:id="@+id/downloadAcivity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

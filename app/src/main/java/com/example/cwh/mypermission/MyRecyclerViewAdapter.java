@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +52,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             public void onClick(View v) {
                 int position = viewHolder.getAdapterPosition();
                 Map<String,Object> map = mMapList.get(position);
-                Toast.makeText(v.getContext(),"clicked view",Toast.LENGTH_SHORT).show();
+                addData(position);
             }
         });
 
@@ -72,6 +73,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
                 Toast.makeText(v.getContext(),"clicked name",Toast.LENGTH_SHORT).show();
             }
         });
+
+        viewHolder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                int position = viewHolder.getAdapterPosition();
+                removeData(position);
+                return true;
+            }
+        });
         return viewHolder;
     }
 
@@ -88,5 +98,20 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public int getItemCount() {
         return mMapList.size();
+    }
+
+    public void addData(int position){
+        HashMap<String,Object> map1 = new HashMap<>();
+        map1.put("pic",R.drawable.chicken);
+        map1.put("name_TextView","名称：小鸡鸡");
+        map1.put("price_TextView","价格：50元");
+        map1.put("desc_TextView","描述：这是世界上最好吃的小鸡鸡");
+        mMapList.add(position,map1);
+        notifyItemInserted(position);
+    }
+
+    public void removeData(int position){
+        mMapList.remove(position);
+        notifyItemRemoved(position);
     }
 }
