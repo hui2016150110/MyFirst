@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         eventBus.setOnClickListener(this);
         Button download = (Button) findViewById(R.id.downloadAcivity);
         download.setOnClickListener(this);
+        Button client = (Button)findViewById(R.id.client);
+        client.setOnClickListener(this);
     }
 
     @Override
@@ -206,7 +208,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(this,DownloadAcivity.class);
                 startActivity(intent);
                 break;
-                default:
+            case R.id.client:
+                intent = new Intent(this,Client.class);
+                startActivity(intent);
+                break;
+            default:
+                    break;
         }
     }
 }
