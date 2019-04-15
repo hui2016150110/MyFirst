@@ -1,4 +1,4 @@
-package view;
+package mvp_view;
 
 import bean.User;
 
@@ -15,4 +15,5 @@ public interface IUserLoginView {
     void hideLoading();
     void toMainActivity(User user);
     void showFailedError();
+    void startNewActivity();
 }

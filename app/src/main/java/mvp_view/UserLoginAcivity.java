@@ -1,8 +1,8 @@
-package view;
+package mvp_view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,15 +10,17 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.cwh.mypermission.R;
+import com.example.cwh.mypermission.broadcastpaBestPractice.BaseActivity;
+import com.example.cwh.mypermission.broadcastpaBestPractice.ShowMainActivity;
 
 import bean.User;
-import presenter.UserLoginPresenter;
+import mvp_presenter.UserLoginPresenter;
 
 /**
  * Created by cwh on 2018/9/6.
  */
 
-public class UserLoginAcivity extends AppCompatActivity implements IUserLoginView {
+public class UserLoginAcivity extends BaseActivity implements IUserLoginView {
 
     private EditText mEtUsername,mEtPassword;
     private Button mBtnLogin,mBtnClear;
@@ -45,7 +47,6 @@ public class UserLoginAcivity extends AppCompatActivity implements IUserLoginVie
                 mUserLoginPresenter.login();
             }
         });
-
         mBtnClear.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -97,5 +98,11 @@ public class UserLoginAcivity extends AppCompatActivity implements IUserLoginVie
     public void showFailedError() {
         Toast.makeText(this,
                 "login failed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void startNewActivity() {
+        Intent intent = new Intent(this, ShowMainActivity.class);
+        startActivity(intent);
     }
 }

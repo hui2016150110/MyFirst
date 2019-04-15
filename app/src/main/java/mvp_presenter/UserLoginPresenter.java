@@ -1,4 +1,4 @@
-package presenter;
+package mvp_presenter;
 
 
 import android.os.Handler;
@@ -7,7 +7,7 @@ import bean.User;
 import biz.IUserBiz;
 import biz.OnLoginListener;
 import biz.UserBiz;
-import view.IUserLoginView;
+import mvp_view.IUserLoginView;
 
 /**
  * Created by cwh on 2018/9/13.
@@ -36,6 +36,7 @@ public class UserLoginPresenter {
                     {
                         userLoginView.toMainActivity(user);
                         userLoginView.hideLoading();
+                        userLoginView.startNewActivity();
                     }
                 });
 
