@@ -1,4 +1,4 @@
-package com.example.cwh.mypermission;
+package com.example.cwh.mypermission.myDefinedView;
 
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
@@ -11,11 +11,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.example.cwh.mypermission.Point3;
+import com.example.cwh.mypermission.R;
+
 public class MyViewAcivity extends AppCompatActivity implements View.OnClickListener{
 
     RectView mRectView;
     ImageView mImageView;
     ImageView mImageView2;
+    CircleView circleView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +30,12 @@ public class MyViewAcivity extends AppCompatActivity implements View.OnClickList
 
         mImageView.setOnClickListener(this);
         mImageView2.setOnClickListener(this);
+        //mRectView.setOnClickListener(this);
 
+        circleView = (CircleView) findViewById(R.id.myCircleView);
+        new Thread(circleView).start();
 
-        //new Thread(mRectView).start();
+       // mRectView.smoothScrollTo(-400,0);
     }
 
     @Override
@@ -39,6 +46,10 @@ public class MyViewAcivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.image2:
                 changeSize();
+                break;
+            case R.id.myView:
+
+                Log.i("TAG","click");
                 break;
         }
     }
@@ -82,6 +93,6 @@ public class MyViewAcivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void changeSize(){
-            ValueAnimator valueAnimator = ValueAnimator.ofInt();
+            circleView.setFlag();
     }
 }
