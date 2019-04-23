@@ -4,15 +4,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:hui="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cwh.mypermission.MyViewAcivity">
-    <com.example.cwh.mypermission.RectView
+    tools:context="com.example.cwh.mypermission.myDefinedView.MyViewAcivity">
+
+    <com.example.cwh.mypermission.myDefinedView.RectView
         android:id="@+id/myView"
+        android:paddingTop="20dp"
         android:layout_width="100dp"
-        android:layout_height="match_parent"
-        hui:default_size = "100dp"/>
+        android:layout_height="100dp"
+
+       />
+
+    <com.example.cwh.mypermission.myDefinedView.CircleView
+        android:id="@+id/myCircleView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        />
 
     <!--<com.example.cwh.mypermission.MyAnimView-->
         <!--android:layout_width="match_parent"-->

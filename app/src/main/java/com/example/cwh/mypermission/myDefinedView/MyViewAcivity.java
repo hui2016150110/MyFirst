@@ -35,6 +35,13 @@ public class MyViewAcivity extends AppCompatActivity implements View.OnClickList
         circleView = (CircleView) findViewById(R.id.myCircleView);
         new Thread(circleView).start();
 
+        circleView.setOnClickListener(new CircleView.onViewClick(){
+
+            @Override
+            public void onClick(float scrollX, float scrollY) {
+                circleView.setFlag();
+            }
+        });
        // mRectView.smoothScrollTo(-400,0);
     }
 
@@ -93,6 +100,6 @@ public class MyViewAcivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void changeSize(){
-            circleView.setFlag();
+            //circleView.setFlag();
     }
 }

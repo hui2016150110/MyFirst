@@ -64,7 +64,9 @@
         </activity>
         <activity android:name=".OkhttpActivity">
         </activity>
-        <activity android:name="view.UserLoginAcivity">
+        <activity android:name="mvp_view.UserLoginAcivity"
+            android:launchMode="singleTop">
+
         </activity>
         <activity android:name=".TestTab">
         </activity>
@@ -84,7 +86,7 @@
         </activity>
         <activity android:name=".ShowNews">
         </activity>
-        <activity android:name=".MyViewAcivity">
+        <activity android:name=".myDefinedView.MyViewAcivity">
         </activity>
         <activity android:name=".HandlerActivity">
         </activity>
@@ -96,15 +98,21 @@
             android:enabled="true"
             android:exported="true">
         </service>
-
         <service
             android:name=".downloadTask.DownService"
             android:enabled="true"
             android:exported="true">
         </service>
+
         <activity android:name=".EventBusActivity">
         </activity>
         <activity android:name=".downloadTask.DownloadAcivity">
+        </activity>
+        <activity android:name=".Client">
+        </activity>
+        <activity android:name=".broadcastpaBestPractice.BaseActivity">
+        </activity>
+        <activity android:name=".broadcastpaBestPractice.ShowMainActivity">
         </activity>
     </application>
 

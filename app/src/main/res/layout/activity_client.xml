@@ -5,23 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cwh.mypermission.HandlerActivity">
+    tools:context="com.example.cwh.mypermission.Client">
 
     <Button
-        android:text="变"
-        android:id="@+id/bt1"
+        android:text="连接"
+        android:id="@+id/connect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="测试"
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:text="退出Looper"
-        android:id="@+id/quit"
+        android:id="@+id/send"
+        android:text="发送"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

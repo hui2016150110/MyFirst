@@ -26,7 +26,7 @@ public class LitepalOperate extends AppCompatActivity {
         book.setName("第一行代码");
         book.setPages(580);
         book.setPrice(58.4);
-
+        book.save();
     }
 
     public void updateDate(){

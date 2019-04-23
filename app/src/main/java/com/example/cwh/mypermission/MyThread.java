@@ -1,9 +1,10 @@
 package com.example.cwh.mypermission;
 
-import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 /**
@@ -13,6 +14,7 @@ import android.util.Log;
 public class MyThread extends Thread{
 
     private Handler mHandler;
+    public Looper mLooper;
     public MyThread(){
 
     }
@@ -21,6 +23,7 @@ public class MyThread extends Thread{
 
         super.run();
         Looper.prepare();
+        mLooper = Looper.myLooper();
         mHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -28,9 +31,18 @@ public class MyThread extends Thread{
             }
         };
         Looper.loop();
+        Log.i("TAG","quit");
     }
 
     public Handler getHandler() {
         return mHandler;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public void exit(){
+        if(mLooper!=null){
+            mLooper.quitSafely();;
+            mLooper = null;
+        }
     }
 }

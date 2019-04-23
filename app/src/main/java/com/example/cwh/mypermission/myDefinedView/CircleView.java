@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -14,6 +15,10 @@ import android.view.View;
 
 public class CircleView extends View implements Runnable{
 
+    private onViewClick mOnViewClick;
+
+    private float startRawX;
+    private float startRawY;
     private Paint mPaint;
     private float radius;
     private float lastX = 0;
@@ -108,5 +113,35 @@ public class CircleView extends View implements Runnable{
     }
     public void setFlag(){
         flag = true;
+    }
+
+    public void setOnClickListener(onViewClick onViewClick) {
+        this.mOnViewClick = onViewClick;
+    }
+
+
+    public interface onViewClick{
+        void onClick(float scrollX,float scrollY);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float x = event.getX();
+        float y = event.getY();
+        float rawX = event.getRawX();
+        float rawY = event.getRawY();
+        switch (event.getAction()){
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_DOWN:
+                startRawX = rawX;
+                startRawY = rawY;
+                break;
+            case MotionEvent.ACTION_UP:
+                if(x+getLeft()<getRight()&&y+getTop()<getBottom()){
+                    mOnViewClick.onClick(rawX-startRawX,rawY-startRawY);
+                }
+        }
+        return true;
     }
 }

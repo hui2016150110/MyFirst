@@ -9,6 +9,7 @@ import bean.User;
 public class UserBiz implements IUserBiz{
     @Override
     public void login(final String username, final String password,final OnLoginListener loginListener) {
+
         new Thread()
         {
             @Override

@@ -1,9 +1,12 @@
 package com.example.cwh.mypermission;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +16,7 @@ public class HandlerActivity extends AppCompatActivity implements View.OnClickLi
 
     Handler handler = null;
     Button mButton;
+    MyThread myThread = new MyThread();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,19 +26,28 @@ public class HandlerActivity extends AppCompatActivity implements View.OnClickLi
         mButton.setOnClickListener(this);
         Button test = (Button) findViewById(R.id.test);
         test.setOnClickListener(this);
-
+        Button quit = (Button) findViewById(R.id.quit);
+        quit.setOnClickListener(this);
 
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bt1:
 //                newThread();
                 Log.i("ims","rrr");
+                if(myThread!=null){
+                    if(!myThread.isAlive())
+                        myThread.start();
+                }
 
-                MyThread myThread = new MyThread();
-                myThread.start();
+                else {
+                    myThread = new MyThread();
+                    myThread.start();
+                }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -56,6 +69,18 @@ public class HandlerActivity extends AppCompatActivity implements View.OnClickLi
                     e.printStackTrace();
                 }
                 send();
+                break;
+            case R.id.quit:
+                if(myThread!=null){
+                    myThread.exit();
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Log.i("TAG",myThread.getState().toString());
+                    myThread = null;
+                }
                 break;
 
         }
