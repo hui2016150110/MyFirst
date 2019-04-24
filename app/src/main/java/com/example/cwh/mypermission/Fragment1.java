@@ -46,8 +46,10 @@ public class Fragment1 extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroyView() {
+        super.onDestroyView();
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        Log.i("TAG", "framgment1:unRegister");
     }
 }
