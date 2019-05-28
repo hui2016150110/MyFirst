@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class SpinnerActivity extends AppCompatActivity {
 
     //实现Spinner的变量声明
     private android.widget.Spinner spinner;
+    private Spinner mySpinner;
     private List<String> list_spinner;
     private ArrayAdapter<String> arr_adapter_spinner;
     private TextView textView_spinner;
@@ -22,6 +24,13 @@ public class SpinnerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.spinner_item);
         createSpinner();
+        mySpinner = (Spinner) findViewById(R.id.myspinner);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.grade,R.layout.myspinner_layout);
+        mySpinner.setBackgroundColor(0x0);
+        adapter.setDropDownViewResource(R.layout.myspinner_item_layout);
+
+
+
     }
     private void createSpinner(){
 

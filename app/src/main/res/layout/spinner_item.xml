@@ -14,6 +14,15 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/myspinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Spinner>
 
 </LinearLayout>

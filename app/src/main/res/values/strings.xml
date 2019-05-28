@@ -5,4 +5,13 @@
     <string name="sub_button">减少</string>
     <string name="re_button">重置</string>
     <string name="show_button">显示进度条的对话框</string>
+
+    <array name="grade">
+        <item>一年级</item>
+        <item>二年级</item>
+        <item>三年级</item>
+        <item>四年级</item>
+        <item>五年级</item>
+        <item>六年级</item>
+    </array>
 </resources>
