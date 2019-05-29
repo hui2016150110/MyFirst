@@ -19,9 +19,10 @@
     </Spinner>
 
     <Spinner
+        android:entries="@array/grade"
         android:id="@+id/myspinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="30dp">
 
     </Spinner>
 

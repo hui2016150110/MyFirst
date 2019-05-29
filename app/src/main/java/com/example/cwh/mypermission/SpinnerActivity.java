@@ -1,5 +1,7 @@
 package com.example.cwh.mypermission;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,7 +30,8 @@ public class SpinnerActivity extends AppCompatActivity {
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.grade,R.layout.myspinner_layout);
         mySpinner.setBackgroundColor(0x0);
         adapter.setDropDownViewResource(R.layout.myspinner_item_layout);
-
+        mySpinner.setDropDownVerticalOffset(dip2px(30));
+        mySpinner.setAdapter(adapter);
 
 
     }
@@ -57,4 +60,9 @@ public class SpinnerActivity extends AppCompatActivity {
             }
         });
     }
+    private int dip2px(float dpValue) {
+        float scale = this.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
 }

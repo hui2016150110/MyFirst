@@ -6,6 +6,6 @@
     android:textColor="#6d6d6d"
     android:textSize="15sp"
     android:padding="8dp"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     tools:text="一年级">
 </TextView>
