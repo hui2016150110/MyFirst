@@ -3,8 +3,13 @@ package com.example.cwh.mypermission;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.ArrayRes;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -27,11 +32,22 @@ public class SpinnerActivity extends AppCompatActivity {
         setContentView(R.layout.spinner_item);
         createSpinner();
         mySpinner = (Spinner) findViewById(R.id.myspinner);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,R.array.grade,R.layout.myspinner_layout);
+        final MyArrayAdapter adapter = MyArrayAdapter.createFromResource(this,R.array.grade,R.layout.myspinner_layout);
         mySpinner.setBackgroundColor(0x0);
         adapter.setDropDownViewResource(R.layout.myspinner_item_layout);
         mySpinner.setDropDownVerticalOffset(dip2px(30));
         mySpinner.setAdapter(adapter);
+        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                adapter.setSelectedPostion(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
     }
@@ -63,6 +79,40 @@ public class SpinnerActivity extends AppCompatActivity {
     private int dip2px(float dpValue) {
         float scale = this.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+
+
+}
+class MyArrayAdapter<T> extends ArrayAdapter<T>{
+
+    private int selectedPostion;
+    public void setSelectedPostion(int selectedPostion) {
+        this.selectedPostion = selectedPostion;
+    }
+    public MyArrayAdapter(@NonNull Context context, int resource,  @NonNull T[] objects) {
+        super(context, resource, objects);
+    }
+
+    @Override
+    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View view = super.getDropDownView(position, convertView, parent);
+        TextView textView = (TextView)view;
+        if(selectedPostion == position){
+            textView.setTextColor(0xff373741);
+            textView.getPaint().setFakeBoldText(true);
+        }
+        else{
+            textView.setTextColor(0xff6d6d6d);
+            textView.getPaint().setFakeBoldText(false);
+        }
+        return view;
+    }
+
+    public static @NonNull MyArrayAdapter<CharSequence> createFromResource(@NonNull Context context,
+                                                                         @ArrayRes int textArrayResId, @LayoutRes int textViewResId) {
+        final CharSequence[] strings = context.getResources().getTextArray(textArrayResId);
+        return new MyArrayAdapter<>(context, textViewResId, strings);
     }
 
 }
