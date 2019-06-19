@@ -97,7 +97,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         Map<String,Object> map = mMapList.get(position);
         Glide.with(context).load((int)map.get("pic")).into(viewHolder.mImageView);
-        viewHolder.mImageView.setImageResource((int)map.get("pic"));
+        //viewHolder.mImageView.setImageResource((int)map.get("pic"));
         viewHolder.textView_name.setText((String)map.get("name_TextView"));
         viewHolder.textView_price.setText((String)map.get("price_TextView"));
         viewHolder.textView_desc.setText((String)map.get("desc_TextView"));
