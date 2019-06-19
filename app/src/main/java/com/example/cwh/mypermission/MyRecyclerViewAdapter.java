@@ -1,5 +1,6 @@
 package com.example.cwh.mypermission;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +21,8 @@ import java.util.Map;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
     private List<Map<String,Object>> mMapList;//数据源
+    private Context context;
+
     //这个ViewHolder含有recycleView每一个子项中所含有的控件，
     static class ViewHolder extends RecyclerView.ViewHolder{
         View mView;
@@ -37,8 +42,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
     }
 
-    public MyRecyclerViewAdapter(List<Map<String,Object>>data){
+    public MyRecyclerViewAdapter(List<Map<String,Object>>data, Context context){
         mMapList = data;
+        this.context = context;
+
     }
 
     //这个方法是创建ViewHolder实例，我们一般将Recyclerview子项中的布局加载进来创建ViewHolder实例，
@@ -89,6 +96,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         Map<String,Object> map = mMapList.get(position);
+        Glide.with(context).load((int)map.get("pic")).into(viewHolder.mImageView);
         viewHolder.mImageView.setImageResource((int)map.get("pic"));
         viewHolder.textView_name.setText((String)map.get("name_TextView"));
         viewHolder.textView_price.setText((String)map.get("price_TextView"));

@@ -1,13 +1,17 @@
 package com.example.cwh.mypermission;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,17 +40,32 @@ public class RecyclerViewActivity extends AppCompatActivity {
 //        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
 //        recyclerView.setLayoutManager(gridLayoutManager);
 
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this, GridLayoutManager.VERTICAL));
 
-        MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(getData());
+        MyRecyclerViewAdapter myRecyclerViewAdapter = new MyRecyclerViewAdapter(getData(),this);
+
+
 
         recyclerView.setAdapter(myRecyclerViewAdapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        //LoggerUtils.e("initRecyclerView"+ "恢复Glide加载图片");
+                        Glide.with(RecyclerViewActivity.this).resumeRequests();
+                    }else {
+                        //LoggerUtils.e("initRecyclerView"+"禁止Glide加载图片");
+                        Glide.with(RecyclerViewActivity.this).pauseRequests();
+                    }
+                }
+            });
     }
 
     private  List<Map<String,Object>> getData(){
@@ -72,7 +91,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         map3.put("desc_TextView","描述：听说没人能拒绝这个味道");
         datalist.add(map3);
 
-        for(int i = 0;i<5;i++){
+        for(int i = 0;i<10;i++){
             datalist.add(map1);
             datalist.add(map2);
             datalist.add(map3);
