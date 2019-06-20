@@ -99,7 +99,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         Glide.with(context)
                 .load((int)map.get("pic"))
                 .placeholder(R.drawable.loading)
-                .override(60,60)
+                .override(100,100)
                 .into(viewHolder.mImageView);
         //viewHolder.mImageView.setImageResource((int)map.get("pic"));
         viewHolder.textView_name.setText((String)map.get("name_TextView"));
