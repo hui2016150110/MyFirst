@@ -120,6 +120,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         map1.put("desc_TextView","描述：这是世界上最好吃的小鸡鸡");
         mMapList.add(position,map1);
         notifyItemInserted(position);
+
     }
 
     public void removeData(int position){
