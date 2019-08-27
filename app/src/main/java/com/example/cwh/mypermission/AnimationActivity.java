@@ -1,5 +1,6 @@
 package com.example.cwh.mypermission;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.TimeInterpolator;
@@ -8,11 +9,13 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
@@ -35,11 +38,14 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
     private List<ImageView> mImageViewList2 = new ArrayList<>();
     private boolean flag = true;
     private boolean flag2 = true;
+    private ImageView roudImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation);
+        roudImage = findViewById(R.id.imageView15);
+        roudImage.setOnClickListener(this);
         mImageView = (ImageView) findViewById(R.id.imageView);
         Button button_alpha =(Button) findViewById(R.id.button_alpha);
         button_alpha.setOnClickListener(this);
@@ -171,6 +177,10 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.scale_animator:
                 scaleValueAnimator();
+                break;
+            case R.id.imageView15:
+                roundAnimator();
+
                 break;
             default:
         }
@@ -325,4 +335,43 @@ public class AnimationActivity extends AppCompatActivity implements View.OnClick
             animator.start();
         }
     }
+
+    private void roundAnimator(){
+        final int startY = roudImage.getTop();
+        Log.i("TAG",""+startY);
+        ValueAnimator animator=ValueAnimator.ofObject(new TypeEvaluator<Point3>(){
+            @Override
+            public Point3 evaluate(float fraction, Point3 startValue, Point3 endValue) {
+
+                float y = (endValue.getY()-startValue.getY())*fraction;
+                float newY = y;
+                if(y>=300)
+                    newY %=300;
+                float x = (float) Math.sqrt(newY*(300-newY));
+                Log.i("TAG","x = "+x+" y = "+y);
+                Point3 point = new Point3(x,y);
+                return point;
+            }
+        }, new Point3(0,0),new Point3(0,900));
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Point3 point= (Point3) animation.getAnimatedValue();
+                roudImage.setTranslationX(point.getX());
+                roudImage.setTranslationY(point.getY());
+
+            }
+        });
+        animator.setDuration(3000);
+        animator.setTarget(roudImage);
+        animator.setInterpolator(new Interpolator() {
+            @Override
+            public float getInterpolation(float input) {
+                return 0;
+            }
+        });
+        animator.start();
+        Log.i("TAG","top = "+roudImage.getTop()+" left = "+roudImage.getLeft());
+    }
+
 }

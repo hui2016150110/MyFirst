@@ -40,11 +40,9 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     // Retrofit库
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    // Okhttp库
-    compile 'com.squareup.okhttp3:okhttp:3.1.2'
     //添加litepal依赖
     compile 'org.litepal.android:core:2.0.0'
     implementation files('libs/volley.jar')
-    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'org.greenrobot:eventbus:3.1.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 }
