@@ -65,6 +65,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     }
                 }
             });
+            //((DefaultItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
     }
 
     private  List<Map<String,Object>> getData(){

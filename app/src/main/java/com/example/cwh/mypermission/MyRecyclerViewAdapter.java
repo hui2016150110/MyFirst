@@ -85,7 +85,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             @Override
             public boolean onLongClick(View v) {
                 int position = viewHolder.getAdapterPosition();
-                removeData(position);
+                testNotify(position);
                 return true;
             }
         });
@@ -108,6 +108,19 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     @Override
+    public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
+        if(payloads.isEmpty()){
+            onBindViewHolder(holder,position);
+        }else {
+
+            Map<String,Object> map = mMapList.get(position);
+            holder.textView_name.setText((String)map.get("name_TextView")+"hhhh");
+            holder.textView_price.setText((String)map.get("price_TextView")+"hhhh");
+            holder.textView_desc.setText((String)map.get("desc_TextView")+"hhhh");
+        }
+    }
+
+    @Override
     public int getItemCount() {
         return mMapList.size();
     }
@@ -121,6 +134,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         mMapList.add(position,map1);
         notifyItemInserted(position);
 
+    }
+
+    private void testNotify(int position){
+        notifyItemChanged(position,"notNull");
     }
 
     public void removeData(int position){
